@@ -39,7 +39,7 @@ app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let found = data.places.find(x => x.state == state);
     let locationPlaces = data.places.filter(x => x.state == state && x.city == city);
-    response.json(found);
+    response.json(locationPlaces);
 });
 
 app.listen(port, () => {
