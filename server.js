@@ -35,11 +35,11 @@ app.post('/review/:placeId' , (request, response) => {
         response.status(404).json({error: `The question ${searchFor} could not be found`});
     }
 });
-app.search('/search/:searchTerm/:location', (request, response) => {
+app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
-    let searchTerm = request.params.searchTerm;
+    let found = data.places.find(x => x.state == state);
     let locationPlaces = data.places.filter(x => x.state == state && x.city == city);
-    response.json(locationPlaces);
+    response.json(found);
 });
 
 app.listen(port, () => {
