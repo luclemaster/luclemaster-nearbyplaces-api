@@ -39,7 +39,12 @@ app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let found = data.places.find(x => x.state == state);
     let locationPlaces = data.places.filter(x => x.state == state && x.city == city);
-    response.json(locationPlaces);
+    if(locationPlaces) {
+        response.json(locationPlaces);
+    }
+    else{
+        response.status(404).json({error: `No results for ${city} could be found`});
+    }
 });
 
 app.listen(port, () => {
