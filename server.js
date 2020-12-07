@@ -37,7 +37,9 @@ app.post('/review/:placeId' , (request, response) => {
 });
 app.search('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
-    locationPlaces = data.places.filter(x => x.state == state && x.city == city)
+    let searchTerm = request.params.searchTerm;
+    let locationPlaces = data.places.filter(x => x.state == state && x.city == city);
+    response.json(locationPlaces);
 });
 
 app.listen(port, () => {
