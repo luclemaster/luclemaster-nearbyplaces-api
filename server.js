@@ -39,7 +39,7 @@ app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let searchTerm = request.params.searchTerm;
     let locationPlaces = data.places.filter(x => x.state === state 
-        && x.city === city && (!searchTerm || searchTerm in x.name || searchTerm in x.description));
+        && x.city === city && (!searchTerm || x.name.includes(searchTerm) || x.description.includes(searchTerm)));
     if(locationPlaces) {
         response.json(locationPlaces);
     }
