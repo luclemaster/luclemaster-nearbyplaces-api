@@ -37,8 +37,9 @@ app.post('/review/:placeId' , (request, response) => {
 });
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
-    let found = data.places.find(x => x.state == state);
-    let locationPlaces = data.places.filter(x => x.state === state && x.city === city);
+    let searchTerm = request.params.searchTerm;
+    let locationPlaces = data.places.filter(x => x.state === state 
+        && x.city === city && (!searchTerm || searchTerm in x.name || searchTerm in x.description));
     if(locationPlaces) {
         response.json(locationPlaces);
     }
