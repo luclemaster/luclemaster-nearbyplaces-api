@@ -46,6 +46,16 @@ app.get('/search/:searchTerm/:location', (request, response) => {
         response.status(404).json({error: `No results for ${city} could be found`});
     }
 });
+app.get('/place/:name', (request, response) => {
+    let searchFor = request.params.name;
+    let found = data.places.find(x => x.name === searchFor);
+    if(found) {
+        response.json(found);
+    }
+    else {
+        response.status(404).json({error: `The question ${searchFor} could not be found`});
+    }
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
