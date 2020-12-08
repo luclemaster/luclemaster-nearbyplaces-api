@@ -21,6 +21,7 @@ function savePlace(name, city, state, description) {
     return postgrePool.query('INSERT INTO nearbyplaces.places ("name", city, state, description, reviews) VALUES ($1, $2, $3, $4, $5)', [name, city, state, description, ""]); 
 }
 function deletePlace(name) {
-    return postgrePool.query(`DELETE FROM nearbyplaces.places WHERE "name"=${name}`)
+    let sqlLine = 'DELETE FROM nearbyplaces.places WHERE "name"=' + name;
+    return postgrePool.query(sqlLine);
 }
 module.exports = {getPlaces, savePlace, deletePlace}
