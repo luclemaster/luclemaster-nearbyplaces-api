@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 var bodyParser = require('body-parser')
-const { request, response } = require('express');
 const db = require('./db')
 let data = require('./data')
 
@@ -16,15 +15,18 @@ app.get('/', (request, response) => {
 });
 
 app.get('/places', (request, response) => {
-    response.json(data.places);
+    //response.json(data.places);
+    db.getPlaces().then(x => response.json(x));
 });
 
 app.post('/place' , (request, response) => {
     let name = request.body.name;
     let city = request.body.city;
     let state = request.body.state;
-    let place = {name: name, city: city, state: state, reviews: []};
-    data.places.push(place);
+    let description = request.body.description;
+    //let place = {name: name, city: city, state: state, reviews: []};
+    //data.places.push(place);
+    db.savePlace(name, city, state, description).then(x => response.json(x));
 });
 app.post('/review/:placeId' , (request, response) => {
     let searchFor = request.params.placeId;

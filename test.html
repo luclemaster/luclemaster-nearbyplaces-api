@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+<body>
+    <script>
+        fetch('http://localhost:3004/place',
+        {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: 'Momos on 6th',
+                city: 'Tucson',
+                state: 'Arizona',
+                description: 'Good Food'
+            })
+        }
+        ).then(x => console.log(x)).catch(e => console.log(e));
+    </script>
+</body>
+</html>
