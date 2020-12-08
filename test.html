@@ -7,17 +7,18 @@
     </head>
 <body>
     <script>
-        fetch('http://localhost:3004/place',
+        fetch('https://luclemaster-nearbyplaces-api.herokuapp.com/place',
         {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: 'Momos on 6th',
+                "name": 'Momos on 6th',
                 city: 'Tucson',
                 state: 'Arizona',
-                description: 'Good Food'
+                description: 'Good Food',
+                reviews: ""
             })
         }
         ).then(x => console.log(x)).catch(e => console.log(e));

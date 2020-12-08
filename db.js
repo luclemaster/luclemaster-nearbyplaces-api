@@ -18,7 +18,7 @@ function getPlaces() {
     return postgrePool.query('select * FROM nearbyplaces.places').then(x => x.rows);
 }
 function savePlace(name, city, state, description) {
-    return postgrePool.query('INSERT INTO nearbyplaces.places VALUES (name, city, state, description) values ($1, $2, $3, $4) returning name', [name, city, state, description])
+    return postgrePool.query('INSERT INTO nearbyplaces.places VALUES (name, city, state, description, reviews) values ($1, $2, $3, $4, $5) returning name', [name, city, state, description, ""])
     .then(x => x.rows); 
 }
 module.exports = {getPlaces, savePlace}
