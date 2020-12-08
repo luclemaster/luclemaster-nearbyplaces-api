@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 var bodyParser = require('body-parser')
 const db = require('./db')
-let data = require('./data')
+let data = require('./data');
+const { request, response } = require('express');
 
 const app = express();
 
@@ -28,6 +29,11 @@ app.post('/place' , (request, response) => {
     //data.places.push(place);
     db.savePlace(name, city, state, description).then(x => response.json(x));
 });
+
+app.post('/delete/:name', (request, response) => {
+    db.deletePlace(request.params.name);
+});
+
 app.post('/review/:placeId' , (request, response) => {
     let searchFor = request.params.placeId;
     let found = data.places.find(x => x.name == request.params.placeID);
