@@ -35,9 +35,9 @@ app.get('/delete/:name', (request, response) => {
     db.deletePlace(request.params.name).then(x => response.json(x));
 });
 
-app.post('/review/:placeId' , (request, response) => {
+app.get('/review/:placeId' , (request, response) => {
     // add functionality to combine old and new review
-    db.getPlace(request.params.placeId).then(x => response.json(x))
+    db.getPlace(request.params.placeId).then(x => response.json(x));
     //response.json(review);
     //if(review.length >0) {
     //    review += ', ' + request.body.review
@@ -56,7 +56,7 @@ app.get('/search/:searchTerm/:location', (request, response) => {
     db.searchLocation(city, state, searchTerm).then(x => response.json(x));
 });
 app.get('/place/:name', (request, response) => {
-        db.getPlace(request.params.name).then(x => response.json(x));
+    db.getPlace(request.params.name).then(x => response.json(x));
 });
 
 app.listen(port, () => {
