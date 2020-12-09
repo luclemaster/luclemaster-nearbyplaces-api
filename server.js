@@ -27,7 +27,7 @@ app.post('/place' , (request, response) => {
     let description = request.body.description;
     //let place = {name: name, city: city, state: state, reviews: []};
     //data.places.push(place);
-    db.savePlace(name, city, state, description).then(x => response.json(x));
+    db.savePlace(name, city, state, description);
 });
 
 app.post('/delete/:name', (request, response) => {
