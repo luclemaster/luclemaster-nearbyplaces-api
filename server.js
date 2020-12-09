@@ -52,7 +52,7 @@ app.get('/search/:searchTerm/:location', (request, response) => {
        && x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x.description.includes(searchTerm)))).then(z => response.json(z));
 });
 app.get('/place/:name', (request, response) => {
-        getPlace(response.params.name).then(x => response.json(x));
+        getPlace(request.params.name).then(x => response.json(x));
 });
 
 app.listen(port, () => {
