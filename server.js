@@ -37,14 +37,14 @@ app.get('/delete/:name', (request, response) => {
 
 app.post('/review/:placeId' , (request, response) => {
     // add functionality to combine old and new review
-    let review = db.getReview(request.params.placeId)
+    //let review = db.getReview(request.params.placeId)
     
     if(review.length >0) {
         review += ', ' + request.body.review
     } else {
         review = request.body.review
     }
-   response.json(request.body.review);
+    response.json(request.body.review);
     //db.placeReview(name, review);
 });
 app.get('/search/:searchTerm/:location', (request, response) => {
