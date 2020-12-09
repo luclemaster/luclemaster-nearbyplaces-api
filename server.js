@@ -48,8 +48,11 @@ app.post('/review/:placeId' , (request, response) => {
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let searchTerm = request.params.searchTerm;
-    db.getPlaces().then(y => y.filter(x => x.state === state 
-       && x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x.description.includes(searchTerm)))).then(z => response.json(z));
+    let answer = db.getPlaces().then(x => json.parse(x));
+    response.json(answer);
+
+    //.filter(x => x['state'] === state 
+    //&& x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x.description.includes(searchTerm)))).then(z => response.json(z));
 });
 app.get('/place/:name', (request, response) => {
         getPlace(request.params.name).then(x => response.json(x));
