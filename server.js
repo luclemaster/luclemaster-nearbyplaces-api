@@ -53,7 +53,6 @@ app.get('/search/:searchTerm/:location', (request, response) => {
 });
 app.get('/place/:name', (request, response) => {
         getPlace(response.params.name).then(x => response.json(x));
-    }
 });
 
 app.listen(port, () => {
