@@ -36,14 +36,14 @@ app.get('/delete/:name', (request, response) => {
 });
 
 app.post('/review/:placeId' , (request, response) => {
-    let searchFor = request.params.placeId;
-    let found = data.places.find(x => x.name == request.params.placeID);
-    if(found) {
-        found.reviews.push(request.body.review);
+    // add functionality to combine old and new review
+    let review = db.getReview(request.params.placeId)
+    if(review.length >0) {
+        review += ', ' + request.body.review
+    } else {
+        review = request.body.review
     }
-    else{
-        response.status(404).json({error: `The question ${searchFor} could not be found`});
-    }
+    db.placeReview(name, review);
 });
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');

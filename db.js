@@ -26,4 +26,10 @@ function savePlace(name, city, state, description) {
 function deletePlace(name) {
     return postgrePool.query('DELETE FROM nearbyplaces.places WHERE "name"= $1 returning *', [name]).then(x => x.rows);
 }
-module.exports = {getPlaces, savePlace, deletePlace,getPlace}
+function placeReview(name, review) {
+    return postgrePool.query('UPDATE nearbyplaces.places SET reviews=$1 WHERE "name"= $2', [review, name]).then(x => x.rows);
+}
+function getReview(name) {
+    return postgrePool.query('SELECT reviews FROM nearbyplaces.places WHERE "name"= $1', [name]).then(x => x.rows);
+}
+module.exports = {getPlaces, savePlace, deletePlace,getPlace, placeReview, getReview}

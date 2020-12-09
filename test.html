@@ -7,18 +7,14 @@
     </head>
 <body>
     <script>
-        fetch('https://luclemaster-nearbyplaces-api.herokuapp.com/place',
+        fetch('https://luclemaster-nearbyplaces-api.herokuapp.com/review/Jack_in_the_Box',
         {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "name": 'Jack in the Box',
-                city: 'Tucson',
-                state: 'Arizona',
-                description: 'nice burgers',
-                reviews: ""
+                review: "Tasty curly fries"
             })
         }
         ).then(x => console.log(x)).catch(e => console.log(e));
