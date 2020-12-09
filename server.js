@@ -32,7 +32,7 @@ app.post('/place' , (request, response) => {
 });
 
 app.post('/delete/:name', (request, response) => {
-    db.deletePlace(request.params.name);
+    db.deletePlace(request.params.name).then(x => response.json(x));
 });
 
 app.post('/review/:placeId' , (request, response) => {
