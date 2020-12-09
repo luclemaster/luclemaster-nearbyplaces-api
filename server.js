@@ -48,7 +48,7 @@ app.post('/review/:placeId' , (request, response) => {
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let searchTerm = request.params.searchTerm;
-    let searchLocation = JSON.parse(db.getPlaces());
+    let searchLocation = db.getPlaces().then(x => JSON.parse(x));
     searchLocation = searchLocation.filter(x => x.state === state 
     && x.city === city && (searchTerm == '$None' || x.name.includes(searchTerm) || x.description.includes(searchTerm)));
     response.json(searchLocation);
