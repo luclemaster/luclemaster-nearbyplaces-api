@@ -7,14 +7,14 @@
     </head>
 <body>
     <script>
-        fetch('https://luclemaster-nearbyplaces-api.herokuapp.com/review/JackintheBox',
+        fetch('https://luclemaster-nearbyplaces-api.herokuapp.com/review/Jack_in_the_Box',
         {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                review: "Tasty curly fries"
+                review: "Tasty curly"
             })
         }
         ).then(x => console.log(x)).catch(e => console.log(e));
