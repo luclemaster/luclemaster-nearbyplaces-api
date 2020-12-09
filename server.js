@@ -50,10 +50,10 @@ app.post('/review/:placeId' , (request, response) => {
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let searchTerm = request.params.searchTerm;
-    let searchLocation = db.getPlaces().then(x => JSON.parse(x));
-    searchLocation = searchLocation.filter(x => x.state === state 
-    && x.city === city && (searchTerm == '$None' || x.name.includes(searchTerm) || x.description.includes(searchTerm)));
-    response.json(searchLocation);
+    if (searchTerm == '$None') {
+        searchTerm = ''
+    }
+    db.searchLocation(city, state, searchTerm).then(x => response.json(x));
 });
 app.get('/place/:name', (request, response) => {
         db.getPlace(request.params.name).then(x => response.json(x));
