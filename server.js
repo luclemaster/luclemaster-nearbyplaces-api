@@ -4,6 +4,7 @@ var bodyParser = require('body-parser')
 const db = require('./db')
 let data = require('./data');
 const { request, response } = require('express');
+const { getPlace } = require('./db');
 
 const app = express();
 
@@ -51,13 +52,7 @@ app.get('/search/:searchTerm/:location', (request, response) => {
        && x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x.description.includes(searchTerm)))).then(z => response.json(z));
 });
 app.get('/place/:name', (request, response) => {
-    let searchFor = request.params.name;
-    let found = data.places.find(x => x.name === searchFor);
-    if(found) {
-        response.json(found);
-    }
-    else {
-        response.status(404).json({error: `The question ${searchFor} could not be found`});
+        getPlace(response.params.name).then(x => response.json(x));
     }
 });
 
