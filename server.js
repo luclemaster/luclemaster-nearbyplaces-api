@@ -44,7 +44,7 @@ app.get('/review/:placeId/' , (request, response) => {
     //} else {
     //    collectedReview = request.params.review;
     //}
-    let teststring = '';
+    var teststring = '';
     collectedReview.then(x => teststring = x);
     response.send(teststring);
     //
