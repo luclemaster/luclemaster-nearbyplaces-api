@@ -15,12 +15,13 @@ const postgrePool = new Pool({
 });
 
 function getPlaces() {
+    postgrePool.connect();
     return postgrePool.query('select * FROM nearbyplaces.places').then(x => x.rows);
 }
 function savePlace(name, city, state, description) {
     return postgrePool.query('INSERT INTO nearbyplaces.places ("name", city, state, description, reviews) VALUES ($1, $2, $3, $4, $5)', [name, city, state, description, ""]); 
 }
 function deletePlace(name) {
-    return postgrePool.query('DELETE FROM nearbyplaces.places WHERE "name"= $1', [name]);
+    return postgrePool.query('DELETE FROM nearbyplaces.places WHERE "name"= $1',+ [name]);
 }
 module.exports = {getPlaces, savePlace, deletePlace}
