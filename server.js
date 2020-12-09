@@ -44,7 +44,7 @@ app.post('/review/:placeId' , (request, response) => {
     } else {
         review = request.body.review
     }
-   response.json(review);
+   response.json(request.body.review);
     //db.placeReview(name, review);
 });
 app.get('/search/:searchTerm/:location', (request, response) => {
