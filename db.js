@@ -30,7 +30,7 @@ function placeReview(name, review) {
     return postgrePool.query('UPDATE nearbyplaces.places SET reviews=$1 WHERE "name"= $2' , [review, name]).then(x => x.rows);
 }
 function getReview(name) {
-    return postgrePool.query('SELECT reviews FROM nearbyplaces.places WHERE "name"= $1', [name]).then(x => x.rows);
+    return postgrePool.query('SELECT "name" FROM nearbyplaces.places WHERE "name"= $1', [name]).then(x => x.rows);
 }
 function searchLocation(city, state, searchTerm) {
     return postgrePool.query(`SELECT * FROM nearbyplaces.places WHERE city=$1 AND state=$2 AND ("name" LIKE '%${searchTerm}%' OR description LIKE '%${searchTerm}%')`, [city, state]).then(x => x.rows);
