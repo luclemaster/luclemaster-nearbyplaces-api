@@ -33,7 +33,7 @@ function getReview(name) {
     return postgrePool.query('SELECT reviews FROM nearbyplaces.places WHERE "name"= $1', [name]).then(x => x.rows);
 }
 function searchLocation(city, state, searchTerm) {
-    postgrePool.query(`SELECT * FROM nearbyplaces.place WHERE keywords LIKE '${city}' LIKE'${state}' LIKE '${searchTerm}'`).then(x => x.rows);
+    postgrePool.query(`SELECT * FROM nearbyplaces.place WHERE city LIKE '${city}' AND state LIKE '${state}' AND NAME' LIKE '${searchTerm}'`).then(x => x.rows);
 
 }
 module.exports = {getPlaces, savePlace, deletePlace,getPlace, placeReview, getReview, searchLocation}
