@@ -47,7 +47,7 @@ app.get('/review/:placeId/' , (request, response) => {
     //}
     
     //collectedReview.then(x => response.send(x)) ;
-    response.send(collectedReview);
+    response.send(typeof collectedReview);
     //response.json(review);
     //if(review.length >0) {
     //    review += ', ' + request.body.review
