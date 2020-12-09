@@ -31,7 +31,7 @@ app.post('/place' , (request, response) => {
     db.savePlace(name, city, state, description);
 });
 
-app.post('/delete/:name', (request, response) => {
+app.get('/delete/:name', (request, response) => {
     db.deletePlace(request.params.name).then(x => response.json(x));
 });
 
