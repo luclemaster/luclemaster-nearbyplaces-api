@@ -15,7 +15,6 @@ const postgrePool = new Pool({
 });
 
 function getPlaces() {
-    postgrePool.connect();
     return postgrePool.query('select * FROM nearbyplaces.places').then(x => x.rows);
 }
 function savePlace(name, city, state, description) {

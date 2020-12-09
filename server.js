@@ -47,14 +47,15 @@ app.post('/review/:placeId' , (request, response) => {
 app.get('/search/:searchTerm/:location', (request, response) => {
     let [city, state] = request.params.location.split(',');
     let searchTerm = request.params.searchTerm;
-    let locationPlaces = db.getPlaces().filter(x => x['state'] === state 
-        && x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x['description'].includes(searchTerm)));
-    if(locationPlaces) {
-        response.json(locationPlaces);
-    }
-    else{
-        response.status(404).json({error: `No results for ${city} could be found`});
-    }
+    //let locationPlaces = db.getPlaces().filter(x => x['state'] === state 
+     //   && x['city'] === city && (searchTerm == '$None' || x['name'].includes(searchTerm) || x['description'].includes(searchTerm)));
+    //if(locationPlaces) {
+       // response.json(locationPlaces);
+    //}
+    //else{
+     //   response.status(404).json({error: `No results for ${city} could be found`});
+    //}
+    return response.json(db.getPlaces());
 });
 app.get('/place/:name', (request, response) => {
     let searchFor = request.params.name;
