@@ -58,7 +58,6 @@ app.get('/review/:placeId/' , (request, response) => {
     //}
     //var teststring = '';
     //collectedReview.then(x => teststring = x);
-    response.json(review);
     //
     //response.json(review);
     //if(review.length >0) {
