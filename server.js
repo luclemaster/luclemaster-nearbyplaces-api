@@ -37,27 +37,15 @@ app.get('/delete/:name', (request, response) => {
 
 app.get('/review/:placeId/' , (request, response) => {
     // add functionality to combine old and new review
-    db.getReview(request.params.placeId).then(x => {
-        response.send(x.rows[0].reviews);
-        /*
-        if(review.length > 0){
-            review += ', ' + request.body.review;
-        }
-        else {
-            review = request.body.review;
-        }
-        db.placeReview(request.params.placeId, review);
-        */
-    });
-
-    //let collectedReview = review.then(x => x[0].reviews);
+    let review = db.getReview(request.params.placeId);
+    let collectedReview = review.then(x => x[0].reviews);
     //if(collectedReview.length > 0) {
     //    collectedReview += ', ' + request.params.review;
     //} else {
     //    collectedReview = request.params.review;
     //}
-    //var teststring = '';
-    //collectedReview.then(x => teststring = x);
+    //let teststring =
+    collectedReview.then(x => response.send(x));
     //
     //response.json(review);
     //if(review.length >0) {
