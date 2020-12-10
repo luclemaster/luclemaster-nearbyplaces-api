@@ -37,8 +37,8 @@ app.get('/delete/:name', (request, response) => {
 
 app.get('/review/:placeId/' , (request, response) => {
     // add functionality to combine old and new review
-    db.getReview(request.params.placeId).then(y => {
-        response.send(y[0].reviews);
+    //db.getReview(request.params.placeId).then(y => {
+     //   response.send(y[0].reviews);
         /*
         if(review.length > 0){
             review += ', ' + request.body.review;
@@ -48,9 +48,9 @@ app.get('/review/:placeId/' , (request, response) => {
         }
         db.placeReview(request.params.placeId, review);
         */
-    });
+    //});
 
-    //let collectedReview = review.then(x => x[0].reviews);
+    let collectedReview = review.then(x => x[0].reviews);
     //if(collectedReview.length > 0) {
     //    collectedReview += ', ' + request.params.review;
     //} else {
@@ -58,7 +58,7 @@ app.get('/review/:placeId/' , (request, response) => {
     //}
     //var teststring = '';
     //collectedReview.then(x => teststring = x);
-    response.json(review);
+    collectedReview.then(x => response.send(x));
     //
     //response.json(review);
     //if(review.length >0) {
