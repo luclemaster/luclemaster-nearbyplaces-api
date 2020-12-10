@@ -27,7 +27,7 @@ function deletePlace(name) {
     return postgrePool.query('DELETE FROM nearbyplaces.places WHERE "name"= $1 returning *', [name]).then(x => x.rows);
 }
 function placeReview(name, review) {
-    return postgrePool.query('UPDATE nearbyplaces.places SET reviews=$1 WHERE "name"= $2' , [review, name]).then(x => x.rows);
+    return postgrePool.query('UPDATE nearbyplaces.places SET "reviews"=$1 WHERE "name"= $2' , [review, name]).then(x => x.rows);
 }
 function getReview(name) {
     return postgrePool.query('SELECT "reviews" FROM nearbyplaces.places WHERE "name"= $1', [name]).then(x => x.rows);
