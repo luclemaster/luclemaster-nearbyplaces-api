@@ -35,7 +35,7 @@ app.get('/delete/:name', (request, response) => {
     db.deletePlace(request.params.name).then(x => response.json(x));
 });
 
-app.get('/review/:placeId/' , (request, response) => {
+app.post('/review/:placeId/' , (request, response) => {
     // add functionality to combine old and new review
     let review = db.getReview(request.params.placeId);
     let collectedReview = review.then(x => x[0].reviews);
@@ -44,8 +44,15 @@ app.get('/review/:placeId/' , (request, response) => {
     //} else {
     //    collectedReview = request.params.review;
     //}
-    //let teststring =
-    collectedReview.then(x => response.send(x));
+    //*collectedReview.then(x => response.send(x));
+    collectedReview.then(x => {
+        if(x.length > 0) {
+            db.placeReview(name, x + ", " + request.body.review)
+        } else {
+            db.placeReview(name, request.body.review)
+        }
+    }
+    );
     //
     //response.json(review);
     //if(review.length >0) {
