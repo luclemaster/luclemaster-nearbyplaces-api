@@ -38,8 +38,7 @@ app.get('/delete/:name', (request, response) => {
 app.get('/review/:placeId/' , (request, response) => {
     // add functionality to combine old and new review
     db.getReview(request.params.placeId).then(y => {
-        let review = y[0].reviews;
-        response.send(review);
+        response.send(y[0].reviews);
         /*
         if(review.length > 0){
             review += ', ' + request.body.review;
